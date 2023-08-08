@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year CountDown</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background:url("./snow.jpg") no-repeat;
+            background-position:center center;
+            background-size: cover;
+            font-family: poppins;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: start;
+            align-items: center;
+        }
+       
+        .countdown-container{
+            display: flex;
+            flex-direction: row;
+        }
+        h1{
+            margin: 4rem;
+            font-size: 4rem;
+            color: rgb(116, 116, 116);
+            
+        }
+        #digit-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: rgba(0, 0, 0, 0.199);
+            padding: 0 10px;
+            margin: 5px;
+            width: 150px;
+            height: 150px;
+            justify-content: center;
+            border-radius: 15px;
+        }
+        #digit-container p {
+
+            font-size: 5rem;
+            font-weight: 600;
+            color: rgb(65, 65, 65);
+        }
+        span{
+            font-size:0.8rem;
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+    
+    <h1>New Year Eve</h1>
+<div class="countdown-container">
+    <!--Days-->
+    <div id="digit-container" class="days-c">
+        <p class="digit" id="days">00</p>
+        <span>Days</span>
+    </div>
+    <!--Hours-->
+    <div id="digit-container" class="hours-c">
+        <p class="digit" id="hours">00</p>
+        <span>Hours</span>
+    </div>
+    <!--Minutes-->
+    <div id="digit-container" class="days-c">
+        <p class="digit" id="minutes">00</p>
+        <span>Minutes</span>
+    </div>
+    <!--Seconds-->
+    <div id="digit-container" class="days-c">
+        <p class="digit" id="seconds">00</p>
+        <span>Seconds</span>
+    </div>
+
+
+</div>
+    <script>
+        
+        function countDown(){
+           // const days = document.getElementById('days');
+           // const hours = document.getElementById('hours');
+           // const minutes = document.getElementById('minutes');
+           // const seconds = document.getElementById('seconds');
+
+            const newYearDate = new Date('1 Jan 2024');
+            const currentDate = new Date();
+            const totalSecond = (newYearDate - currentDate) / 1000;
+           
+            const day = Math.floor(totalSecond/ 3600 / 24);
+            const hour = Math.floor((totalSecond /3600) % 24);
+            const minute = Math.floor((totalSecond / 60) % 60);
+            const second = Math.floor((totalSecond) % 60);
+
+
+            const pattern =[day,hour,minute,second];
+            const items = [days,hours,minutes,seconds];
+
+           for (i = 0; i<4; i++){
+                items[i].innerHTML = addingZoero(pattern[i]);
+            }
+           
+            
+            //days.innerHTML = addingZoero(day);
+            //hours.innerHTML = addingZoero(hour);
+            //minutes.innerHTML = addingZoero(minute);
+            //seconds.innerHTML = addingZoero(second);
+
+
+             function addingZoero(time){
+                 if(time< 10){
+                     return time =`0${time}`;
+                 }
+                 else{
+                     return time ; 
+                 }
+
+             }
+
+
+        }
+       //countDown(); 
+
+       setInterval(countDown,1000);
+       
+
+
+    </script>
+</body>
+</html>
